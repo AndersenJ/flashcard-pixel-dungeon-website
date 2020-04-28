@@ -28,3 +28,12 @@ body {
     position: fixed;
     bottom: 0;
 }
+
+.horizontal {
+    display: flex;
+}
+
+img {
+    padding: 30px;
+    width: 270px;
+}
