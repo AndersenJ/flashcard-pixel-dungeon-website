@@ -4,6 +4,10 @@
         <title>Flashcard Pixel Dungeon</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="/styles.css">
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -34,7 +38,34 @@
         </nav>
         <div class="main">
             <h1>Guide</h1>
-            <p>For the most part, this game plays the same as Shattered Pixel Dungeon.</p>
+            <p>For the most part, this game plays the same as Shattered Pixel Dungeon. The main difference is the flashcards. In Flashcard Pixel Dungeon, a new "Mystical Card" item was introduced. When used, it chooses a random flashcard from a random active deck. If no decks are active, it'll add in a basic "times tables" deck, and use that. The flashcard will be presented to the user, who will then decide what they think the answer is. When the user has made up their mind, they push the "Reveal Answer" button. If the answer matches what they thought it would, they choose "Success". Otherwise, they choose "Failure". There is no penalty for failure, other than being presented with another flashcard. On success, the current version of the game allows the user to choose a scroll or potion they will receive as a reward. This will be changed in the future; besides being extremely imbalanced and against the spirit of the roguelike genre, it's far too much information for a new user to deal with. Instead, the reward will be a random scroll or potion.</p>
+            <h2>Custom flashcard decks</h2>
+            <p>Most users will be unsatisfied with the default deck times tables deck, and will want to import their own. The interface to import decks should be easy enough to use, so instead I'll use this space to explain the format that the files will need to be in. The quickest way to get the point across is with an example:</p>
+            <code class="block">
+{
+    "name": "Japanese",
+    "questions": [
+        {
+            "type": "basic",
+            "question": "boku",
+            "answer": "I"
+        },
+        {
+            "type": "basic",
+            "question": "kangaeru",
+            "answer": "to think"
+        }
+    ]
+}
+            </code>
+            <p>The <code>name</code> field determines what the deck will be called. The <code>type</code> field doesn't do anything right now, but was put in place in case we want to add support for different types of questions in the future, such as multiple choice. The <code>question</code> field is used to determine what will go on the front of the flashcard, and the <code>answer</code> card is used to determine what will go on the back.</p>
+            <h2>Generating a deck from a CSV file</h2>
+            <p>It is likely that you won't want to generate such a large JSON file by hand. Instead, you can convert an existing CSV! First, you'll need a CSV file with all of the questions in the first column and the answers in the second column. Next, open the csv file in vim and type in these keystrokes exactly:</p>
+            <code>:%s/"/\\"/g&lt;Enter&gt;ggqjqqjI{"type": "basic","question":"&lt;Esc&gt;f,xi","answer":"&lt;Esc&gt;A"},&lt;Esc&gt;j@jq@jxA]}&lt;Esc&gt;ggI{"name":"deckname","questions":[&lt;Esc&gt;:w deck.json&lt;Enter&gt;:q&lt;Enter&gt;
+            </code>
+            <p>Alternatively, you can download this string of commands as a file <a href="/convert.keys" download>here</a> and use <code>vim -s convert.keys deck.csv</code> to do it. Using either method, the deck will be outputted to <code>deck.json</code></p>
+        </div>
+        <div class="smallverticalspacer">
         </div>
         <div class="footer">
             <a href="https://github.com/AndersenJ/flashcard-pixel-dungeon-website">This website on Github</a>

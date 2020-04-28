@@ -1,0 +1,25 @@
+{
+    "name": "Japanese",
+    "questions": [
+        {
+            "type": "basic",
+            "question": "boku",
+            "answer": "I"
+        },
+        {
+            "type": "basic",
+            "question": "僕",
+            "answer": "ぼく"
+        },
+        {
+            "type": "basic",
+            "question": "kangaeru",
+            "answer": "to think"
+        },
+        {
+            "type": "basic",
+            "question": "考える",
+            "answer": "かんがえる"
+        }
+    ]
+}
